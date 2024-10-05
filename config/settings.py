@@ -14,6 +14,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -92,7 +93,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.getenv("NAME"),
-        "USER": os.getenv("USER"),
+        "USER": "postgres",
         "PASSWORD": os.getenv("PASSWORD"),
         "HOST": "localhost",
     }
@@ -209,7 +210,6 @@ CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
-from celery.schedules import crontab
 
 CELERY_BEAT_SCHEDULE = {
     "remind user about his/her habits": {
